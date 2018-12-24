@@ -24,6 +24,7 @@ import ObjectUtils from '../../../ObjectUtils';
 import AppsDrawer from './AppsDrawer';
 import { _t } from '../../../languageHandler';
 import RateLimitedFunc from '../../../ratelimitedfunc';
+import SettingsStore from "../../../settings/SettingsStore";
 
 
 module.exports = React.createClass({
@@ -162,7 +163,7 @@ module.exports = React.createClass({
         />;
 
         let stateViews = null;
-        if (this.props.room) {
+        if (this.props.room && SettingsStore.isFeatureEnabled("feature_state_counters")) {
             const stateEvs = this.props.room.currentState.getStateEvents('re.jki.counter');
 
             let counters = [];
